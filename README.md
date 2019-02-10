@@ -127,10 +127,159 @@ Even een korte herhaling:
 * Met `new` geven we aan dat er een nieuw object moet worden aangemaakt.
 * Met `Gegevens()` geven we aan welk class en welke constructor voor het object moet worden gebruikt.
 
+## Classes en waar ze staan
+We kunnen de `Gegevens` class gebruiken in de `Program` class omdat deze in dezelfde directory staan:
+```
+src/
+├── Gegevens.java
+└── Program.java
+```
+Elke class heeft zijn eigen `.java` file met dezelfde naam als de class.
+
+## Methods gebruiken
+Nu we een programma hebben wat we kunnen uitvoeren kunnen we het ook gaan gebruiken.
+Als we het huidige programma uitvoeren gebeurt er namelijk weinig; het wordt een object `piet` wordt aangemaakt en dan is het programma al klaar.
+
+Laten we beginnen met laten zien wat we allemaal over piet weten. Hiervoor willen we de gegevens van piet uitprinten. Bijvoorbeeld zo:
+```java
+  public static void main(String args[]) {
+    Gegevens piet = new Gegevens();
+
+    // print gegevens
+    System.out.println("voornaam:"      + piet.voornaam);
+    System.out.println("tussenvoegsel:" + piet.tussenvoegsel);
+    System.out.println("achternaam:"    + piet.achternaam);
+    System.out.println("adres:"         + piet.adres);
+    System.out.println("woonplaats:"    + piet.woonplaats);
+    System.out.println("geboortedatum:" + piet.geboortedatum);
+  }
+```
+Dit is echter niet heel mooi als je meerdere `Gegevens` objecten hebt, dan lopen je aantal regels code snel op.
+Laten we daarom in `Gegevens` een method maken die ze voor ons print:
+```java
+class Gegevens
+  public void printData() {
+    System.out.println("voornaam:"      + voornaam);
+    System.out.println("tussenvoegsel:" + tussenvoegsel);
+    System.out.println("achternaam:"    + achternaam);
+    System.out.println("adres:"         + adres);
+    System.out.println("woonplaats:"    + woonplaats);
+    System.out.println("geboortedatum:" + geboortedatum);
+  }
+}
+```
+Deze method moet uiteraard `public` zijn anders kunnen we hem niet aanroepen.
+Echter konden we ook de variabelen aanroepen vanuit de `main` terwijl we deze niet public hadden gemaakt. Dit komt omdat alles standaard public is. Dit is natuurlijk niet handig, want dan kan iedereen de data van het object aanpassen zonder dat het object en ander gebruikers van het object daar kennis van hebben.
+
+Laten we de variabelen daarom `private` maken. Zo kan alleen het object zelf nog bij deze data.
+```java
+class Gegevens {
+  private String voornaam;
+  private String tussenvoegsel;
+  private String achternaam;
+  private String adres;
+  private String woonplaats;
+  private String geboortedatum;
+}
+```
+Nu kunnen we ook de `main` aanpassen door de nieuwe method `printData` aan te roepen:
+```java
+  public static void main(String args[]) {
+    Gegevens piet = new Gegevens();
+
+    piet.printData();
+  }
+```
+
+## Wat slimmigheid toevoegen
+Nu kunnen we al die gegevens ook wat mooier formatteren. De naam als 1 geheel bijvoorbeeld:
+```java
+    System.out.println("naam: " + voornaam + tussenvoegsel + achternaam);
+```
+Maar niet ieder persoon heeft een tussenvoegsel. Dus daar moeten we rekening mee houden:
+```java
+    if (tussenvoegsel == null || tussenvoegsel.length() == 0)
+      System.out.println("naam: " + voornaam + achternaam);
+    else
+      System.out.println("naam: " + voornaam + tussenvoegsel + achternaam);
+```
+De code is alleen wat rommelig door al die aanroepingen van `System.out.println`.
+Laten we hier ook is wat aan doen:
+```java
+    String naam = "naam: " + voornaam;
+    if (tussenvoegsel != null && tussenvoegsel.length() > 0) {
+      naam += tussenvoegsel;
+    }
+    naam += achternaam;
+    System.out.println("naam: " + naam);
+```
+En als we maar 1 `System.out.println` willen hebben:
+```java
+  public void printData() {
+    String output = "naam:\t" + voornaam;
+    if (tussenvoegsel != null && tussenvoegsel.length() > 0) {
+      output += tussenvoegsel;
+    }
+    output += achternaam + "\n";
+
+    output += "adres:\t"         + adres         + "\n";
+    output += "woonplaats:\t"    + woonplaats    + "\n";
+    output += "geboortedatum:\t" + geboortedatum + "\n";
+
+    System.out.println(output);
+  }
+```
+Hier maken we gebruik van _escape characters_ in de strings om tabs en newlines in te voegen. Tabs worden gespecifieceerd door `\t` en newlines door `\n`.
+
+
+# Command line interactie
+Stel we weten geen van de gegevens en willen deze opvragen. Dan kunnen we dat doen door argumenten in te lezen bij het opstarten van het programma of als het programma al draait. Wij kiezen voor het laatste.
+
+Om via de command line text in te lezen gebruiken we `BufferedReader` en `InputStreamReader`.
+`inputStreamReader` kan data inlezen vanuit een gespificeerde input, hiervoor gebruiken we `System.in`.
+Om de gegenereerde stream van `inputStreamReader` te kunnen verwerken gebruiken we `BufferedReader`, hiermee kunnen we stukjes van de stream verwerken zonder direct met streams te hoeven werken.
+
+Met het voorgaande kunnen we een nieuw object maken die text van de command line in kan lezen:
+```java
+    BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+```
+Om te zetten naar een `String` gebruiken we de `readLine()` method.
+```java
+    String cli_input = input.readLine();
+```
+Als je dit wil compileren krijg je een error. `readLine()` kan namelijk een _gooien_.
+
+## Exceptions
+Exceptions zijn objecten die worden _geactiveerd_ wanneer er iets ongeplands gebeurt in een method.
+Een exception wordt geactiveerd door hem te _gooien_. Als deze wordt gegooid moet je deze _ooit_ een keer _afvangen_.
+Het afvangen wordt gedaan met een `catch` en als je een method wil roepen die een exception kan gooien moet dat binnen een `try` block. Dit ziet er zo uit:
+```java
+try {
+  String cli_input = input.readLine();
+} catch(Exception e) {
+  ...
+}
+```
+`catch` vangt de exception en in het `catch` block kan je de exception dan verwerken naar bijvoorbeeld een errorlog.
+
+### Exceptions doorspelen
+Als je niet direct rekening wil houden met mogelijke exceptions kan je deze doorspelen door dit aan te geven in de method definitie, door middel van `throws`:
+```java
+public void functieNaam() throws Exception {
+  ...
+}
+```
+
+Echter als er een exception wordt gegooid moet je deze nog steeds afvangen in de method waar je de functie aanroept die de exception doorspeelt. In dit geval `functieNaam()`.
+
+
+# Compleet programma
+Probeer met al de vergane kennis het programma in `src/` te begrijpen.
 
 
 
 
 
 
-Stel we willen de gegevens interactief ophalen.
+
+
