@@ -42,9 +42,9 @@ class Gegevens {
   public void printData() {
     String output = "naam:\t" + voornaam;
     if (tussenvoegsel != null && tussenvoegsel.length() > 0) {
-      output += tussenvoegsel;
+      output += " " + tussenvoegsel;
     }
-    output += achternaam + "\n";
+    output += " " + achternaam + "\n";
 
     output += "adres:\t"         + adres         + "\n";
     output += "woonplaats:\t"    + woonplaats    + "\n";
