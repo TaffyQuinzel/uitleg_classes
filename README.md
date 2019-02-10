@@ -1,4 +1,4 @@
-#Object georienteerd vanuit databases
+# Object georienteerd vanuit databases
 Een class is als een tabel definitie in een database. Het specificeerd hoe de tabel eruit komt te zien, welke waarden waar staan, wat het zijn en met welke namen ze zijn op te vragen.
 Een object is als een ingevulde rij in een tabel.
 
@@ -20,7 +20,7 @@ class Gegevens {
 }
 ```
 
-##De Constructor
+## De Constructor
 Als we hier dan een object van willen maken hebben we een constructor nodig waarmee de class kan worden geinitieerd tot een object.
 ```java
   Gegevens() {
@@ -34,7 +34,7 @@ Als we hier dan een object van willen maken hebben we een constructor nodig waar
 ```
 De constructor heeft altijd dezelfde naam als de class.
 
-##Objecten aanmaken
+## Objecten aanmaken
 Als je een object wilt maken gebruik je het `new` keywoord:
 ```java
 Gegevens piet = new Gegevens();
@@ -45,7 +45,7 @@ Met `new` wordt aangegeven dat er een nieuw object moet worden gemaakt en `Gegev
 
 Als je een object aanmaakt kijkt hij naar de class en de constructor en gebruikt deze als template voor het te creeeren object.
 
-###Alternatieve constructors
+### Alternatieve constructors
 Je kan meerder constructors per class hebben. Ze moeten dan well verschillen van elkaar, anders weet de compiler niet welke constructor hij moet aanroepen.
 
 Als we de volgende constructor aanmaken, krijgen we een error:
@@ -84,7 +84,7 @@ Omdat de argument naam hetzelfde is als de variabele in de class hebben we een m
 Met de `.` kan je dan zeggen dat je een specifieke variabele of method wil aanroepen in dit object, in dit gevaal `voornaam`.
 De `.` kan je zien als een manier om 1 specifiek veld van een rij in een tabel op te vragen.
 
-#Methods
+# Methods
 Methods zou je dan kunnen zien als interactieve velden in de rij.
 Sommige rijen in een database worden verzameld en gecomputeerd vanuit andere rijen, dit zou dan een method zijn in java.
 Het grootste verschil is dan alleen dat eem method zijn waarde pas berekend als deze expliciet wordt aangeroepen.
