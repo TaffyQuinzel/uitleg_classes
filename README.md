@@ -4,9 +4,9 @@ Misschien helpt dit om classes en objecten beter te begrijpen:
 Een class is als een tabel definitie in een database. Het specificeerd hoe de tabel eruit komt te zien, welke waarden waar staan, wat het zijn en met welke namen ze zijn op te vragen.
 Een object is als een ingevulde rij in een tabel.
 
-| voornaam | tussenvoegsel | achternaam | adres | woonplaats | geboortedatum | <-- class
+| voornaam | tussenvoegsel | achternaam | adres | woonplaats | geboortedatum |
 |----------|---------------|------------|-------|------------|---------------|
-| piet|van|boter|coolsingel 50|rotterdam| <--object
+| piet|van|boter|coolsingel 50|rotterdam|
 
 Als je een object aanmaakt kijkt hij naar de class en gebruikt deze als template voor het te creeeren object.
 
