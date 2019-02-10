@@ -85,10 +85,52 @@ Met de `.` kan je dan zeggen dat je een specifieke variabele of method wil aanro
 De `.` kan je zien als een manier om 1 specifiek veld van een rij in een tabel op te vragen.
 
 # Methods
-Methods zou je dan kunnen zien als interactieve velden in de rij.
-Sommige rijen in een database worden verzameld en gecomputeerd vanuit andere rijen, dit zou dan een method zijn in java.
-Het grootste verschil is dan alleen dat eem method zijn waarde pas berekend als deze expliciet wordt aangeroepen.
+Methods zou je in een database kunnen vergelijken met interactieve velden in de rij.
+Sommige rijen in een database worden verzameld en gecomputeerd vanuit andere rijen, met bijvoorbeeld queries, dit zou dan een method zijn in java.
 
 Constructors zijn speciale methods die automatisch tijdens het initieren van een object worden aangeroepen.
+
+## De main method
+Nu hebben we een hele mooie class `Gegevens` opgezet, maar nu willen we er ook iets mee doen.
+Als je een programma wil maken hebben we een apart `main` method nodig.
+Er is maar 1 `main` method per programma.
+De java runtime zoek in je programma naar die ene `main` en begint daar de executie van het programma.
+
+Omdat een method altijd in een class moet zitten is het handig om een class aan te maken die alleen de `main` method bevat.
+```java
+class Program {
+  public static void main(String args[]) {
+    Gegevens piet = new Gegevens();
+  }
+}
+```
+Laten we de code is ontleden.
+Met `class Program {` definieren we een class `Program`, deze gebruiken we om de `main` in te stoppen. Er staat daarom ook verder niks in de class.
+Er is geen constructor nodig omdat er niks hoeft te worden geinitieerd. Het enige wat we immers gebruiken is de `main` method.
+De `main` definieren we met:
+```java
+  public static void main(String args[]) {
+```
+Het `public` keyword duid aan dat de method van buiten de class in aan te roepen. Dit is nodig om de java runtime de `main` method te kunnen vinden.
+`static` geeft aan dat er maar 1 instantie van deze method kan zijn. Dit is uiteraard nodig omdat er maar 1 `main` kan zijn.
+`void` geeft de waarde aan wat de method teruggeeft of in java termen de __return value__ van de method.
+`main` is de naam van de method en alles wat tussen de haakjes staat zijn de argumenten die aan de method worden meegegeven, in dit geval `String args[]`.
+
+`String` is het type van het argument genaamd `args`. De blokhaakjes `[]` geven aan dat het een array is.
+`args` is dus een array van `String`s en zijn de mogelijke command line arguments die je aan het programma meegeeeft. Ook als je van te voren weet dat je geen argumenten nodig hebt moet je ze definieren.
+
+In de volgende regel maken we een `Gegevens` object aan genaamd `piet`:
+```java
+    Gegevens piet = new Gegevens();
+```
+Even een korte herhaling:
+* Met `new` geven we aan dat er een nieuw object moet worden aangemaakt.
+* Met `Gegevens()` geven we aan welk class en welke constructor voor het object moet worden gebruikt.
+
+
+
+
+
+
 
 Stel we willen de gegevens interactief ophalen.
