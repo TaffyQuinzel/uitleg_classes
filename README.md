@@ -60,7 +60,7 @@ Als we de volgende constructor aanmaken, krijgen we een error:
   }
 ```
 We hebben namelijk al de constructor `Gegevens()` eerder gespecificeerd. En hoewel er in de constructor andere dingen gebeuren, de waarden die worden toegekend zijn anders, is de definitie van de constructor hetzelfde.
-De definitie van beide constructors is `Gegevens()`, hierdoor weer `new` niet welke constructor je wilt gebruiken.
+De definitie van beide constructors is `Gegevens()`, hierdoor weet `new` niet welke constructor je wilt gebruiken.
 
 Als we onze nieuwe constructor aanpassen kunnen we hem wel gebruiken:
 ```java
